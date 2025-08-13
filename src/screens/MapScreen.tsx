@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Button, Linking, Alert, Platform } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Button,
+  Linking,
+  Alert,
+  Platform,
+} from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 import { RouteProp } from '@react-navigation/native';
@@ -15,24 +22,30 @@ type Props = {
 
 export default function Map({ route }: Props) {
   const { launchpad } = route.params;
-  const [userLocation, setUserLocation] = useState<{ latitude: number; longitude: number } | null>(null);
-// inside your component after `userLocation` is set:
-const [distance, setDistance] = useState<number | null>(null);
+  const [userLocation, setUserLocation] = useState<{
+    latitude: number;
+    longitude: number;
+  } | null>(null);
+  
+  const [distance, setDistance] = useState<number | null>(null);
 
-useEffect(() => {
-  if (userLocation && launchpad?.latitude && launchpad?.longitude) {
-    const dist = getPreciseDistance(
-      { latitude: userLocation.latitude, longitude: userLocation.longitude },
-      { latitude: launchpad.latitude, longitude: launchpad.longitude }
-    );
-    setDistance(dist / 1000); // km
-  }
-}, [userLocation, launchpad]);
+  useEffect(() => {
+    if (userLocation && launchpad?.latitude && launchpad?.longitude) {
+      const dist = getPreciseDistance(
+        { latitude: userLocation.latitude, longitude: userLocation.longitude },
+        { latitude: launchpad.latitude, longitude: launchpad.longitude },
+      );
+      setDistance(dist / 1000); // km
+    }
+  }, [userLocation, launchpad]);
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
-        Alert.alert('Permission Denied', 'Location permission is required to show your position.');
+        Alert.alert(
+          'Permission Denied',
+          'Location permission is required to show your position.',
+        );
         return;
       }
 
@@ -57,7 +70,7 @@ useEffect(() => {
       <MapView
         style={StyleSheet.absoluteFillObject}
         initialRegion={{
-          latitude: launchpad?.latitude     || 0,
+          latitude: launchpad?.latitude || 0,
           longitude: launchpad?.longitude || 0,
           latitudeDelta: 0.5,
           longitudeDelta: 0.5,
@@ -72,22 +85,18 @@ useEffect(() => {
           pinColor={colors.primary}
         />
         {userLocation && (
-          <Marker
-            coordinate={userLocation}
-            title="You"
-            pinColor="blue"
-          />
+          <Marker coordinate={userLocation} title="You" pinColor="blue" />
         )}
       </MapView>
 
       <View style={styles.button}>
-  {distance !== null && (
-    <Button
-      title={`Open in Maps (${distance.toFixed(2)} km away)`}
-      onPress={openInMaps}
-    />
-  )}
-</View>
+        {distance !== null && (
+          <Button
+            title={`Open in Maps (${distance.toFixed(2)} km away)`}
+            onPress={openInMaps}
+          />
+        )}
+      </View>
     </View>
   );
 }
@@ -95,9 +104,9 @@ useEffect(() => {
 const styles = StyleSheet.create({
   container: { flex: 1 },
   button: {
-    backgroundColor:"white",
+    backgroundColor: 'white',
     position: 'absolute',
-    borderRadius:20,
+    borderRadius: 20,
     bottom: 30,
     left: 20,
     right: 20,

@@ -21,7 +21,10 @@ export default class ErrorBoundary extends React.Component<Props, State> {
       return (
         <View style={styles.container}>
           <Text style={styles.text}>Something went wrong.</Text>
-          <Button title="Reload App" onPress={() => this.setState({ hasError: false })} />
+          <Button
+            title="Reload App"
+            onPress={() => this.setState({ hasError: false })}
+          />
         </View>
       );
     }
@@ -37,5 +40,4 @@ const styles = StyleSheet.create({
 // Logging helper
 export function logError(error: any, info?: any) {
   console.error('Logged Error:', error, info);
- 
 }

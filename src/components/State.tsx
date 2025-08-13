@@ -19,7 +19,10 @@ export default function State({ type, message }: Props) {
 
   return (
     <View style={styles.center}>
-      <Text style={styles.text}>{message || (type === 'empty' ? 'No data found' : 'Something went wrong')}</Text>
+      <Text style={styles.text}>
+        {message ||
+          (type === 'empty' ? 'No data found' : 'Something went wrong')}
+      </Text>
     </View>
   );
 }

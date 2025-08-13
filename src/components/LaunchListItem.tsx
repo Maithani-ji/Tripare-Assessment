@@ -13,13 +13,16 @@ const LaunchListItem = React.memo(({ launch, onPress }: Props) => {
   const statusText = launch.upcoming
     ? 'Upcoming'
     : launch.success
-    ? 'Success'
-    : 'Failure';
+      ? 'Success'
+      : 'Failure';
 
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       {launch.links?.patch?.small ? (
-        <Image source={{ uri: launch.links.patch.small }} style={styles.image} />
+        <Image
+          source={{ uri: launch.links.patch.small }}
+          style={styles.image}
+        />
       ) : (
         <View style={[styles.image, styles.placeholder]} />
       )}
@@ -35,8 +38,8 @@ const LaunchListItem = React.memo(({ launch, onPress }: Props) => {
             statusText === 'Success'
               ? styles.success
               : statusText === 'Failure'
-              ? styles.failure
-              : styles.upcoming,
+                ? styles.failure
+                : styles.upcoming,
           ]}
         >
           {statusText}

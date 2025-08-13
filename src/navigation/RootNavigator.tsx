@@ -4,11 +4,10 @@ import DetailsScreen from '../screens/DetailsScreen';
 import Map from '../screens/MapScreen';
 import { Launchpad } from '../types/spacex';
 
-
 export type RootStackParamList = {
   Home: undefined;
   Details: { id: string };
-  Map: { launchpad: Launchpad | null};
+  Map: { launchpad: Launchpad | null };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();

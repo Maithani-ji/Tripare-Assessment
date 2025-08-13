@@ -20,11 +20,12 @@ export function useLaunches(limit = 10) {
         setData((prev) => {
           const merged = pageNum === 1 ? launches : [...prev, ...launches];
           const unique = merged.filter(
-            (item, index, self) => index === self.findIndex((t) => t.id === item.id)
+            (item, index, self) =>
+              index === self.findIndex((t) => t.id === item.id),
           );
           return unique;
         });
-        
+
         setPage(pageNum);
         setError(null);
       } catch (err: any) {
@@ -34,7 +35,7 @@ export function useLaunches(limit = 10) {
         setRefreshing(false);
       }
     },
-    [limit]
+    [limit],
   );
 
   const refresh = () => loadLaunches(1, true);
@@ -48,7 +49,7 @@ export function useLaunches(limit = 10) {
   const filteredData = useMemo(() => {
     if (!search) return data;
     return data.filter((launch) =>
-      launch.name.toLowerCase().includes(search.toLowerCase())
+      launch.name.toLowerCase().includes(search.toLowerCase()),
     );
   }, [data, search]);
 

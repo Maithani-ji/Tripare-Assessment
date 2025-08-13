@@ -1,5 +1,11 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, FlatList, RefreshControl, TextInput, Button } from 'react-native';
+import React from 'react';
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  RefreshControl,
+  TextInput,
+} from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/RootNavigator';
 import { colors } from '../theme/colors';
@@ -8,12 +14,24 @@ import { useLaunches } from '../hooks/useLaunches';
 import State from '../components/State';
 import LaunchListItem from '../components/LaunchListItem';
 
-type HomeScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Home'>;
+type HomeScreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'Home'
+>;
 type Props = { navigation: HomeScreenNavigationProp };
 
 export default function HomeScreen({ navigation }: Props) {
-  const { data, loading, error, refreshing, refresh, loadMore, search, setSearch, page } =
-    useLaunches(10);
+  const {
+    data,
+    loading,
+    error,
+    refreshing,
+    refresh,
+    loadMore,
+    search,
+    setSearch,
+    page,
+  } = useLaunches(10);
 
   // Handle initial loading
   if (loading && page === 1) {
@@ -25,8 +43,6 @@ export default function HomeScreen({ navigation }: Props) {
     return <State type="error" message={error} />;
   }
 
- 
-  
   return (
     <View style={styles.container}>
       {/* Search Bar */}
@@ -40,8 +56,12 @@ export default function HomeScreen({ navigation }: Props) {
       <FlatList
         data={data}
         keyExtractor={(item) => item.id}
-        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={refresh} />}
-        ListEmptyComponent={ <State type="empty" message="No launches match your search." />}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={refresh} />
+        }
+        ListEmptyComponent={
+          <State type="empty" message="No launches match your search." />
+        }
         onEndReached={loadMore}
         onEndReachedThreshold={0.5}
         renderItem={({ item }) => (

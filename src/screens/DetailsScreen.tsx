@@ -1,5 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet, ActivityIndicator, ScrollView, Button } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ActivityIndicator,
+  ScrollView,
+  Button,
+} from 'react-native';
 import { RouteProp, useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../navigation/RootNavigator';
 import { useLaunchDetails } from '../hooks/useLaunchDetails';
@@ -52,13 +59,18 @@ export default function DetailsScreen({ route }: Props) {
       <Text style={styles.date}>
         {new Date(launch.date_utc).toLocaleString()}
       </Text>
-      <Text>Status: {launch.upcoming ? 'Upcoming' : launch.success ? 'Success' : 'Failure'}</Text>
+      <Text>
+        Status:{' '}
+        {launch.upcoming ? 'Upcoming' : launch.success ? 'Success' : 'Failure'}
+      </Text>
 
       {launchpad && (
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Launchpad Info</Text>
           <Text>{launchpad.full_name}</Text>
-          <Text>{launchpad.locality}, {launchpad.region}</Text>
+          <Text>
+            {launchpad.locality}, {launchpad.region}
+          </Text>
           <Text>Timezone: {launchpad.timezone}</Text>
           <Text>Launch Attempts: {launchpad.launch_attempts}</Text>
           <Text>Launch Successes: {launchpad.launch_successes}</Text>
@@ -66,7 +78,10 @@ export default function DetailsScreen({ route }: Props) {
       )}
 
       {/* Navigation to Map will come in Phase 5 */}
-      <Button title="View on Map" onPress={() => navigation.navigate('Map', { launchpad })} />
+      <Button
+        title="View on Map"
+        onPress={() => navigation.navigate('Map', { launchpad })}
+      />
     </ScrollView>
   );
 }
