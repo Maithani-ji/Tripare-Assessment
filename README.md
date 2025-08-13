@@ -1,4 +1,4 @@
-https://github.com/user-attachments/assets/81284f6a-1c3d-4390-b8b0-f28d018fb4bc
+
 
 # 🚀 SpaceX Explorer
 
