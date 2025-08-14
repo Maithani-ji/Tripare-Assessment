@@ -11,6 +11,7 @@ export async function fetchLaunches(page = 1, limit = 10): Promise<Launch[]> {
       populate: ['links.patch'],
     },
   });
+
   return data.docs;
 }
 
@@ -21,5 +22,6 @@ export async function fetchLaunch(id: string): Promise<Launch> {
 
 export async function fetchLaunchpad(id: string): Promise<Launchpad> {
   const { data } = await api.get(`/v4/launchpads/${id}`);
+
   return data;
 }

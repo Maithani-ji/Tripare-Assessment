@@ -6,7 +6,7 @@ A simple React Native app to browse SpaceX launchpads, view details, and see the
 
 ## 📹 Demo Video
 
-[Watch the demo](https://github.com/user-attachments/assets/81284f6a-1c3d-4390-b8b0-f28d018fb4bc)
+[Watch the demo](https://github.com/user-attachments/assets/38e7a46c-6edf-4de0-bc4b-bc4b12b290e9)
 
 ---
 
